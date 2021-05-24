@@ -1,13 +1,5 @@
-import { template } from '@babel/core';
 import React, { useLayoutEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Button,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 // Shows information about one product when selected
