@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import ProductItem from '../../components/shop/ProductItem';
@@ -21,7 +21,11 @@ const ProductsOverview = ({ navigation }) => {
       renderItem={itemData => (
         <ProductItem
           product={itemData.item}
-          viewDetail={() => {}}
+          viewDetail={() =>
+            navigation.navigate('Product Detail', {
+              productId: itemData.item.id,
+            })
+          }
           addToCart={() => {}}
         />
       )}
