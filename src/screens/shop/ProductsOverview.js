@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
-import { useSelector } from 'reat-redux';
+import { useSelector } from 'react-redux';
 
 // Shows the list of all products that will be in our application
 const ProductsOverview = () => {

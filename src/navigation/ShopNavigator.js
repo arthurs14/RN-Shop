@@ -12,9 +12,9 @@ const ProductsNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: Platform.OS === 'andorid' ? Colors.primary : 'white',
-          headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
+          backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white',
         },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
       }}>
       <Stack.Screen name="Products Overview" component={ProductsOverview} />
     </Stack.Navigator>
