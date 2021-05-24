@@ -1,9 +1,18 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
+import { useSelector } from 'reat-redux';
 
 // Shows the list of all products that will be in our application
 const ProductsOverview = () => {
-  return <FlatList />;
+  const products = useSelector(state => state.products.availableProducts);
+
+  return (
+    <FlatList
+      data={products}
+      keyExtractor={item => item.id}
+      renderItem={itemData => <Text>{itemData.item.title}</Text>}
+    />
+  );
 };
 
 export default ProductsOverview;
