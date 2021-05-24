@@ -18,7 +18,13 @@ const ProductsOverview = ({ navigation }) => {
     <FlatList
       data={products}
       keyExtractor={item => item.id}
-      renderItem={itemData => <ProductItem product={itemData.item} />}
+      renderItem={itemData => (
+        <ProductItem
+          product={itemData.item}
+          viewDetail={() => {}}
+          addToCart={() => {}}
+        />
+      )}
     />
   );
 };
