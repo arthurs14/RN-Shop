@@ -2,6 +2,8 @@ import React, { useLayoutEffect } from 'react';
 import { FlatList, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
+import ProductItem from '../../components/shop/ProductItem';
+
 // Shows the list of all products that will be in our application
 const ProductsOverview = ({ navigation }) => {
   const products = useSelector(state => state.products.availableProducts);
@@ -16,7 +18,7 @@ const ProductsOverview = ({ navigation }) => {
     <FlatList
       data={products}
       keyExtractor={item => item.id}
-      renderItem={itemData => <Text>{itemData.item.title}</Text>}
+      renderItem={itemData => <ProductItem product={itemData.item} />}
     />
   );
 };
