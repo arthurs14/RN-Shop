@@ -24,14 +24,29 @@ const ProductDetail = ({ navigation, route }) => {
 
   return (
     <ScrollView>
-      <Image source={{ uri: product.imageUrl }} />
+      <Image style={styles.image} source={{ uri: product.imageUrl }} />
       <Button title="Add to Cart" onPress={() => {}} />
-      <Text>{`$${product.price.toFixed(2)}`}</Text>
-      <Text>{product.description}</Text>
+      <Text style={styles.price}>{`$${product.price.toFixed(2)}`}</Text>
+      <Text style={styles.description}>{product.description}</Text>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    height: 300,
+  },
+  price: {
+    fontSize: 20,
+    color: '#888',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  description: {
+    fontSize: 14,
+    textAlign: 'center',
+  },
+});
 
 export default ProductDetail;
