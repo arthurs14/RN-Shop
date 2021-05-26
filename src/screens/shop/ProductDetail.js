@@ -50,8 +50,10 @@ const styles = StyleSheet.create({
     color: '#888',
     textAlign: 'center',
     marginVertical: 20,
+    fontFamily: 'OpenSans-Bold',
   },
   description: {
+    fontFamily: 'OpenSans-Regular',
     fontSize: 14,
     textAlign: 'center',
     marginHorizontal: 20,
