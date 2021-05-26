@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
+import Colors from '../../constants/Colors';
+
 // Shows information about one product when selected
 const ProductDetail = ({ navigation, route }) => {
   const { productId } = route.params;
@@ -25,7 +27,9 @@ const ProductDetail = ({ navigation, route }) => {
   return (
     <ScrollView>
       <Image style={styles.image} source={{ uri: product.imageUrl }} />
-      <Button title="Add to Cart" onPress={() => {}} />
+      <View style={styles.actions}>
+        <Button color={Colors.primary} title="Add to Cart" onPress={() => {}} />
+      </View>
       <Text style={styles.price}>{`$${product.price.toFixed(2)}`}</Text>
       <Text style={styles.description}>{product.description}</Text>
     </ScrollView>
@@ -36,6 +40,10 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 300,
+  },
+  actions: {
+    marginVertical: 10,
+    alignItems: 'center',
   },
   price: {
     fontSize: 20,
