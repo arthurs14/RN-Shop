@@ -13,19 +13,29 @@ const cartReducer = (state = initialState, action) => {
       const price = addProduct.price;
       const title = addProduct.title;
 
+      let cartItem;
+
       if (state.items[addProduct.id]) {
         // already exists
-      } else {
-        const newCartItem = new CartItem(1, price, title, price);
+        cartItem = new CartItem(
+          state.items[addProduct.id].quantity + 1,
+          price,
+          title,
+          state.items[addProduct.id].total + price,
+        );
         return {
           ...state,
-          items: {
-            ...state.items,
-            [addProduct.id]: newCartItem,
-          },
+          items: { ...state.items, [addProduct.id]: cartItem },
+          totalAmount: state.totalAmount + price,
+        };
+      } else {
+        cartItem = new CartItem(1, price, title, price);
+        return {
+          ...state,
+          items: { ...state.items, [addProduct.id]: cartItem },
+          totalAmount: state.totalAmount + price,
         };
       }
-      break;
   }
   return state;
 };
