@@ -1,12 +1,14 @@
 import React, { useLayoutEffect } from 'react';
 import { FlatList } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ProductItem from '../../components/shop/ProductItem';
+import * as cartActions from '../../store/actions/cartActions';
 
 // Shows the list of all products that will be in our application
 const ProductsOverview = ({ navigation }) => {
   const products = useSelector(state => state.products.availableProducts);
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,7 +28,9 @@ const ProductsOverview = ({ navigation }) => {
               productId: itemData.item.id,
             })
           }
-          addToCart={() => {}}
+          addToCart={() => {
+            dispatch(cartActions.addToCart(itemData.item));
+          }}
         />
       )}
     />
