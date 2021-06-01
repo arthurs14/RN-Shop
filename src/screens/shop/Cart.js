@@ -7,14 +7,33 @@ import Colors from '../../constants/Colors';
 // Shows items that you added to the cart
 const Cart = () => {
   let cartTotal = useSelector(state => state.cart.totalAmount);
+  let cartItems = useSelector(state => {
+    let items = [];
+
+    for (const key in state.cart.items) {
+      items.push({
+        id: key,
+        title: state.cart.items[key].title,
+        price: state.cart.items[key].price,
+        quantity: state.cart.items[key].quantity,
+        total: state.cart.items[key].total,
+      });
+    }
+
+    return items;
+  });
 
   return (
     <View style={styles.container}>
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
-          Total: <Text style={styles.amount}>${cartTotal}</Text>
+          Total: <Text style={styles.amount}>${cartTotal.toFixed(2)}</Text>
         </Text>
-        <Button title="Order Now" />
+        <Button
+          color={Colors.accent}
+          title="Order Now"
+          disabled={cartItems.length === 0}
+        />
       </View>
       <View>
         <Text>CART ITEMS</Text>
