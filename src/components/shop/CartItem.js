@@ -8,15 +8,17 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const CartItem = ({ remove }) => {
+const CartItem = ({ data, remove }) => {
+  const { quantity, title, total } = data;
+  console.log(data);
   return (
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
-        <Text style={styles.quantity}>Quantity</Text>{' '}
-        <Text style={styles.mainText}>Title</Text>
+        <Text style={styles.mainText}>{title} </Text>
+        <Text style={styles.quantity}>({quantity})</Text>
       </View>
       <View style={styles.itemData}>
-        <Text style={styles.mainText}>Total Amount</Text>
+        <Text style={styles.mainText}>${total.toFixed(2)}</Text>
         <TouchableOpacity onPress={remove} style={styles.deleteButton}>
           <Icon
             name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
@@ -33,9 +35,11 @@ const styles = StyleSheet.create({
   cartItem: {
     padding: 10,
     backgroundColor: 'white',
-    flexDirecttion: 'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 10,
   },
   itemData: {
     flexDirection: 'row',
