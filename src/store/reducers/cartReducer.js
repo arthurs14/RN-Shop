@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../actions/cartActions';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cartActions';
 import CartItem from '../../models/cart-item';
 
 const initialState = {
@@ -30,12 +30,38 @@ const cartReducer = (state = initialState, action) => {
         };
       } else {
         cartItem = new CartItem(1, price, title, price);
-        return {
-          ...state,
-          items: { ...state.items, [addProduct.id]: cartItem },
-          totalAmount: state.totalAmount + price,
-        };
       }
+
+      return {
+        ...state,
+        items: { ...state.items, [addProduct.id]: cartItem },
+        totalAmount: state.totalAmount + price,
+      };
+    case REMOVE_FROM_CART:
+      const selectedCartItem = state.items[action.id];
+      let currentCart = selectedCartItem.quantity;
+      let updateCartItems;
+
+      if (currentCart > 1) {
+        // reduce but not delete
+        let updatedCartItem = new CartItem(
+          selectedCartItem.quantity - 1,
+          selectedCartItem.price,
+          selectedCartItem.title,
+          selectedCartItem.total - selectedCartItem.price,
+        );
+
+        updateCartItems = { ...state.items, [action.id]: updatedCartItem };
+      } else {
+        updateCartItems = { ...state.items };
+        delete updateCartItems[action.id];
+      }
+
+      return {
+        ...state,
+        items: updateCartItems,
+        totalAmount: state.totalAmount - selectedCartItem.price,
+      };
   }
   return state;
 };
