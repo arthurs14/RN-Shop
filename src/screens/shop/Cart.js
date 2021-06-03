@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
+import * as cartActions from '../../store/actions/cartActions';
 
 // Shows items that you added to the cart
 const Cart = () => {
@@ -24,6 +25,8 @@ const Cart = () => {
     return items;
   });
 
+  let dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View style={styles.summary}>
@@ -40,7 +43,12 @@ const Cart = () => {
         data={cartItems}
         keyExtractor={item => item.id}
         renderItem={itemData => (
-          <CartItem data={itemData.item} remove={() => {}} />
+          <CartItem
+            data={itemData.item}
+            remove={() => {
+              dispatch(cartActions.removeFromCart(itemData.item.id));
+            }}
+          />
         )}
       />
     </View>
