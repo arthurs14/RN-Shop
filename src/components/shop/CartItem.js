@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const CartItem = ({ data, remove }) => {
   const { quantity, title, total } = data;
-  console.log(data);
+
   return (
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
