@@ -60,7 +60,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: updateCartItems,
-        totalAmount: state.totalAmount - selectedCartItem.price,
+        totalAmount: Math.abs(state.totalAmount - selectedCartItem.price),
       };
   }
   return state;

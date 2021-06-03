@@ -22,7 +22,7 @@ const Cart = () => {
       });
     }
 
-    return items;
+    return items.sort((a, b) => (a.id > b.id ? 1 : -1));
   });
 
   let dispatch = useDispatch();
