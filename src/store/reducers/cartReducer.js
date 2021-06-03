@@ -38,12 +38,13 @@ const cartReducer = (state = initialState, action) => {
         totalAmount: state.totalAmount + price,
       };
     case REMOVE_FROM_CART:
+      // gets product information
       const selectedCartItem = state.items[action.id];
       let currentCart = selectedCartItem.quantity;
       let updateCartItems;
 
       if (currentCart > 1) {
-        // reduce but not delete
+        // reduce quantity by 1 and subtract from price
         let updatedCartItem = new CartItem(
           selectedCartItem.quantity - 1,
           selectedCartItem.price,
@@ -53,6 +54,7 @@ const cartReducer = (state = initialState, action) => {
 
         updateCartItems = { ...state.items, [action.id]: updatedCartItem };
       } else {
+        // update cart and deletes from object
         updateCartItems = { ...state.items };
         delete updateCartItems[action.id];
       }
