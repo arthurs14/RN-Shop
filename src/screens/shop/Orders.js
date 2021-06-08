@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { FlatList, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 // Shows the list of orders
-const Orders = () => {
+const Orders = ({ navigation }) => {
   let orders = useSelector(state => state.orders.orders);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Your Orders',
+    });
+  }, [navigation]);
 
   return (
     <FlatList

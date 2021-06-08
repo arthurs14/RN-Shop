@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,7 +8,7 @@ import * as cartActions from '../../store/actions/cartActions';
 import * as orderActions from '../../store/actions/orderActions';
 
 // Shows items that you added to the cart
-const Cart = () => {
+const Cart = ({ navigation }) => {
   let cartTotal = useSelector(state => state.cart.totalAmount);
   let cartItems = useSelector(state => {
     let items = [];
@@ -27,6 +27,12 @@ const Cart = () => {
   });
 
   let dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Your Cart',
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
