@@ -27,8 +27,16 @@ const DrawerNavigator = () => {
         drawerActiveTintColor: Colors.primary,
         drawerActiveBackgroundColor: 'white',
       }}>
-      <Drawer.Screen name="Shop" component={ShopNavigator} />
-      <Drawer.Screen name="Orders" component={StackNavigator} />
+      <Drawer.Screen
+        name="Shop"
+        component={ShopNavigator}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="Orders"
+        component={StackNavigator}
+        options={{ headerShown: false }}
+      />
     </Drawer.Navigator>
   );
 };
