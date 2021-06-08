@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { FlatList, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 // Shows the list of orders
 const Orders = () => {
+  let orders = useSelector(state => state.orders.orders);
+
   return (
-    <View>
-      <Text>Orders Screen</Text>
-    </View>
+    <FlatList
+      data={orders}
+      keyExtractor={item => item.id}
+      renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
+    />
   );
 };
 
