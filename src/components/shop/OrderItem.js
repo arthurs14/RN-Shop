@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-import CartItem from './CartItem';
 import Colors from '../../constants/Colors';
 
 const OrderItem = ({ itemData }) => {
