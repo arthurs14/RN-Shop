@@ -6,7 +6,6 @@ import Colors from '../../constants/Colors';
 
 const OrderItem = ({ itemData }) => {
   const { totalAmount, readableDate } = itemData;
-  console.log(itemData);
 
   return (
     <View style={styles.orderItem}>
@@ -14,7 +13,7 @@ const OrderItem = ({ itemData }) => {
         <Text style={styles.totalAmount}>{`$${totalAmount.toFixed(2)}`}</Text>
         <Text style={styles.date}>{readableDate}</Text>
       </View>
-      <Button color={Colors.primary} title="Show Order Details" />
+      <Button color={Colors.primary} title="Order Details" />
     </View>
   );
 };
@@ -30,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 20,
     padding: 10,
+    alignItems: 'center',
   },
   summary: {
     flexDirection: 'row',

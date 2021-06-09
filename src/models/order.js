@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 class Order {
   constructor(id, items, totalAmount, date) {
     this.id = id;
