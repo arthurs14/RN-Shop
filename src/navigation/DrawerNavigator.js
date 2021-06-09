@@ -9,13 +9,12 @@ import ShopNavigator from './ShopNavigator';
 import Orders from '../screens/shop/Orders';
 import Colors from '../constants/Colors';
 
-
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Orders" component={Orders} />
+      <Stack.Screen name="Orders Screen" component={Orders} />
     </Stack.Navigator>
   );
 };

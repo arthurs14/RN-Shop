@@ -1,4 +1,5 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cartActions';
+import { ADD_ORDER } from '../actions/orderActions';
 import CartItem from '../../models/cart-item';
 
 const initialState = {
@@ -64,6 +65,8 @@ const cartReducer = (state = initialState, action) => {
         items: updateCartItems,
         totalAmount: Math.abs(state.totalAmount - selectedCartItem.price),
       };
+    case ADD_ORDER:
+      return initialState;
   }
   return state;
 };
