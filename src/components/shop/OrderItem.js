@@ -16,7 +16,7 @@ const OrderItem = ({ itemData }) => {
       </View>
       <Button
         color={Colors.primary}
-        title="Order Details"
+        title={showDetails ? 'Hide Order Details' : 'Order Details'}
         onPress={() => {
           setShowDetails(prevState => !prevState);
         }}
