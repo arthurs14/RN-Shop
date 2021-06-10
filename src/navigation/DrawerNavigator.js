@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { screenOptions } from './DefaultNavigationSettings';
+import AdminNavigator from './AdminNavigator';
 import ShopNavigator from './ShopNavigator';
 import Orders from '../screens/shop/Orders';
 import Colors from '../constants/Colors';
@@ -51,6 +52,20 @@ const DrawerNavigator = () => {
           drawerIcon: config => (
             <Icon
               name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+              size={23}
+              color={config.color}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Admin"
+        component={AdminNavigator}
+        options={{
+          headerShown: false,
+          drawerIcon: config => (
+            <Icon
+              name={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
               size={23}
               color={config.color}
             />
