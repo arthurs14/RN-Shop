@@ -37,7 +37,11 @@ const ProductsOverview = ({ navigation }) => {
     });
   }, [navigation]);
 
-  const selectItem = () => {};
+  const selectItem = (id, title) => {
+    navigation.navigate(title, {
+      productId: id,
+    });
+  };
 
   return (
     <FlatList
@@ -48,23 +52,16 @@ const ProductsOverview = ({ navigation }) => {
           imageUrl={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          viewDetail={() =>
-            navigation.navigate('Product Detail', {
-              productId: itemData.item.id,
-            })
-          }
-          addToCart={() => {
-            dispatch(cartActions.addToCart(itemData.item));
-          }}>
+          onSelect={() => selectItem(itemData.item.id, 'Product Detail')}>
           <Button
             color={Colors.primary}
             title="View Details"
-            onPress={() => {}}
+            onPress={() => selectItem(itemData.item.id, 'Product Detail')}
           />
           <Button
             color={Colors.primary}
             title="Add to Cart"
-            onPress={() => {}}
+            onPress={() => dispatch(cartActions.addToCart(itemData.item))}
           />
         </ProductItem>
       )}
