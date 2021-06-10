@@ -49,7 +49,7 @@ const ProductsOverview = ({ navigation }) => {
       keyExtractor={item => item.id}
       renderItem={itemData => (
         <ProductItem
-          imageUrl={itemData.item.imageUrl}
+          image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
           onSelect={() => selectItem(itemData.item.id, 'Product Detail')}>
