@@ -1,15 +1,17 @@
 import React, { useLayoutEffect } from 'react';
 import { FlatList, Platform, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductItem from '../../components/shop/ProductItem';
 import HeaderButton from '../../components/UI/HeaderButton';
 import Colors from '../../constants/Colors';
+import * as productActions from '../../store/actions/productsActions';
 
 // shows products saved from that user
 const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(state => state.products.userProducts);
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -37,7 +39,13 @@ const UserProducts = ({ navigation }) => {
           price={itemData.item.price}
           onSelect={() => {}}>
           <Button color={Colors.primary} title="Edit" onPress={() => {}} />
-          <Button color={Colors.primary} title="Delete" onPress={() => {}} />
+          <Button
+            color={Colors.primary}
+            title="Delete"
+            onPress={() =>
+              dispatch(productActions.deleteProduct(itemData.item.id))
+            }
+          />
         </ProductItem>
       )}
     />

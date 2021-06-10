@@ -52,10 +52,10 @@ const Cart = ({ navigation }) => {
       <FlatList
         data={cartItems}
         keyExtractor={item => item.id}
-        deleteable
         renderItem={itemData => (
           <CartItem
             data={itemData.item}
+            deleteable
             remove={() => {
               dispatch(cartActions.removeFromCart(itemData.item.id));
             }}
