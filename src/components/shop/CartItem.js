@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const CartItem = ({ data, remove }) => {
+const CartItem = ({ data, deleteable, remove }) => {
   const { quantity, title, total } = data;
 
   return (
@@ -19,13 +19,15 @@ const CartItem = ({ data, remove }) => {
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${total.toFixed(2)}</Text>
-        <TouchableOpacity onPress={remove} style={styles.deleteButton}>
-          <Icon
-            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-            size={23}
-            color="red"
-          />
-        </TouchableOpacity>
+        {deleteable && (
+          <TouchableOpacity onPress={remove} style={styles.deleteButton}>
+            <Icon
+              name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+              size={23}
+              color="red"
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

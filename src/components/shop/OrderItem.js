@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
+import CartItem from '../shop/CartItem';
 import Colors from '../../constants/Colors';
 
 const OrderItem = ({ itemData }) => {
-  const { totalAmount, readableDate } = itemData;
+  const [showDetails, setShowDetails] = useState(false);
+  const { totalAmount, readableDate, items } = itemData;
 
   return (
     <View style={styles.orderItem}>
@@ -12,7 +14,20 @@ const OrderItem = ({ itemData }) => {
         <Text style={styles.totalAmount}>{`$${totalAmount.toFixed(2)}`}</Text>
         <Text style={styles.date}>{readableDate}</Text>
       </View>
-      <Button color={Colors.primary} title="Order Details" />
+      <Button
+        color={Colors.primary}
+        title="Order Details"
+        onPress={() => {
+          setShowDetails(prevState => !prevState);
+        }}
+      />
+      {showDetails && (
+        <View>
+          {items.map(item => (
+            <CartItem data={item} />
+          ))}
+        </View>
+      )}
     </View>
   );
 };
