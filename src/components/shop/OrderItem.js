@@ -22,9 +22,9 @@ const OrderItem = ({ itemData }) => {
         }}
       />
       {showDetails && (
-        <View>
+        <View style={styles.detailItems}>
           {items.map(item => (
-            <CartItem data={item} />
+            <CartItem key={item.id} data={item} />
           ))}
         </View>
       )}
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'OpenSans-Regular',
     color: '#888',
+  },
+  detailItems: {
+    width: '100%',
   },
 });
 
