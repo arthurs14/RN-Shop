@@ -1,11 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import { FlatList, Platform } from 'react-native';
+import { FlatList, Platform, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cartActions';
 import HeaderButton from '../../components/UI/HeaderButton';
+import Colors from '../../constants/Colors';
 
 // Shows the list of all products that will be in our application
 const ProductsOverview = ({ navigation }) => {
@@ -36,6 +37,8 @@ const ProductsOverview = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const selectItem = () => {};
+
   return (
     <FlatList
       data={products}
@@ -52,8 +55,18 @@ const ProductsOverview = ({ navigation }) => {
           }
           addToCart={() => {
             dispatch(cartActions.addToCart(itemData.item));
-          }}
-        />
+          }}>
+          <Button
+            color={Colors.primary}
+            title="View Details"
+            onPress={() => {}}
+          />
+          <Button
+            color={Colors.primary}
+            title="Add to Cart"
+            onPress={() => {}}
+          />
+        </ProductItem>
       )}
     />
   );
