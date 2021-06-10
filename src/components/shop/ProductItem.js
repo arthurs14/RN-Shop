@@ -3,17 +3,16 @@ import {
   View,
   Text,
   Image,
-  Button,
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
 } from 'react-native';
 
-import Colors from '../../constants/Colors';
-
-const ProductItem = ({ product, viewDetail, addToCart }) => {
+const ProductItem = props => {
   let TouchableComponent = TouchableOpacity;
+
+  console.log(props);
 
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableComponent = TouchableNativeFeedback;
@@ -22,27 +21,16 @@ const ProductItem = ({ product, viewDetail, addToCart }) => {
   return (
     <View style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableComponent onPress={viewDetail} useForeground>
+        <TouchableComponent onPress={props.onSelect} useForeground>
           <View>
             <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{ uri: product.imageUrl }} />
+              <Image style={styles.image} source={{ uri: props.imageUrl }} />
             </View>
             <View style={styles.details}>
-              <Text style={styles.title}>{product.title}</Text>
-              <Text style={styles.price}>{`$${product.price.toFixed(2)}`}</Text>
+              <Text style={styles.title}>{props.title}</Text>
+              <Text style={styles.price}>{`$${props.price.toFixed(2)}`}</Text>
             </View>
-            <View style={styles.actions}>
-              <Button
-                color={Colors.primary}
-                title="View Details"
-                onPress={viewDetail}
-              />
-              <Button
-                color={Colors.primary}
-                title="Add To Cart"
-                onPress={addToCart}
-              />
-            </View>
+            <View style={styles.actions}>{props.children}</View>
           </View>
         </TouchableComponent>
       </View>
