@@ -13,6 +13,10 @@ const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   const dispatch = useDispatch();
 
+  const editProduct = id => {
+    navigation.navigate('Edit Products', { productId: id });
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Your Products',
@@ -38,7 +42,11 @@ const UserProducts = ({ navigation }) => {
           title={itemData.item.title}
           price={itemData.item.price}
           onSelect={() => {}}>
-          <Button color={Colors.primary} title="Edit" onPress={() => {}} />
+          <Button
+            color={Colors.primary}
+            title="Edit"
+            onPress={() => editProduct(itemData.item.id)}
+          />
           <Button
             color={Colors.primary}
             title="Delete"
