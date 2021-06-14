@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 // edit products saved from that user
 const EditProducts = () => {
@@ -9,5 +9,7 @@ const EditProducts = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default EditProducts;
