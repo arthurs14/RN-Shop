@@ -1,5 +1,15 @@
 import React, { useLayoutEffect } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  StyleSheet,
+  Platform,
+} from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
+import HeaderButton from '../../components/UI/HeaderButton';
 
 // edit products saved from that user
 const EditProducts = ({ navigation, route }) => {
@@ -8,6 +18,17 @@ const EditProducts = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: productId ? 'Edit Product' : 'Add Product',
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Save"
+            iconeName={
+              Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
+            }
+            onPress={() => {}}
+          />
+        </HeaderButtons>
+      ),
     });
   });
 
