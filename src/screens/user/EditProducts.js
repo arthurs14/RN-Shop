@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
 
 // edit products saved from that user
-const EditProducts = () => {
+const EditProducts = ({ navigation, route }) => {
+  const { productId } = route.params;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: productId ? 'Edit Product' : 'Add Product',
+    });
+  });
+
   return (
     <ScrollView>
       <View style={styles.form}>
