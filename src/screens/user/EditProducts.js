@@ -8,16 +8,26 @@ import {
   Platform,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
 import HeaderButton from '../../components/UI/HeaderButton';
 
 // edit products saved from that user
 const EditProducts = ({ navigation, route }) => {
   const { productId } = route.params;
-  const [title, setTitle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
+
+  const editProduct = useSelector(state =>
+    state.products.userProducts.find(product => productId === product.id),
+  );
+
+  const [title, setTitle] = useState(editProduct ? editProduct.title : '');
+  const [imageUrl, setImageUrl] = useState(
+    editProduct ? editProduct.imageUrl : '',
+  );
+  const [price, setPrice] = useState(editProduct ? editProduct.price : '');
+  const [description, setDescription] = useState(
+    editProduct ? editProduct.description : '',
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
