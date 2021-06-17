@@ -33,7 +33,7 @@ const UserProducts = ({ navigation }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="Add"
-            iconeName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+            iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
             onPress={() =>
               navigation.navigate('Edit Product', { productId: null })
             }

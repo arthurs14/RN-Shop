@@ -36,7 +36,7 @@ const EditProducts = ({ navigation, route }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="Save"
-            iconeName={
+            iconName={
               Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
             }
             onPress={() => {}}
