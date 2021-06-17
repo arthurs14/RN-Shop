@@ -41,19 +41,35 @@ const EditProducts = ({ navigation, route }) => {
       <View style={styles.form}>
         <View style={styles.formControl}>
           <Text style={styles.label}>Title</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={title}
+            onChangeText={text => setTitle(text)}
+          />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={imageUrl}
+            onChangeText={url => setImageUrl(url)}
+          />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Price</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={price}
+            onChangeText={total => setPrice(total)}
+          />
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={description}
+            onChangeText={details => setDescription(details)}
+          />
         </View>
       </View>
     </ScrollView>
