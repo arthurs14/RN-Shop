@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   View,
   ScrollView,
@@ -14,6 +14,10 @@ import HeaderButton from '../../components/UI/HeaderButton';
 // edit products saved from that user
 const EditProducts = ({ navigation, route }) => {
   const { productId } = route.params;
+  const [title, setTitle] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
 
   useLayoutEffect(() => {
     navigation.setOptions({
