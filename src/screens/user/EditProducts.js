@@ -65,14 +65,16 @@ const EditProducts = ({ navigation, route }) => {
             onChangeText={url => setImageUrl(url)}
           />
         </View>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Price</Text>
-          <TextInput
-            style={styles.input}
-            value={price}
-            onChangeText={total => setPrice(total)}
-          />
-        </View>
+        {editProduct ? null : (
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Price</Text>
+            <TextInput
+              style={styles.input}
+              value={price}
+              onChangeText={total => setPrice(total)}
+            />
+          </View>
+        )}
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput
