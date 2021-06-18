@@ -1,4 +1,9 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, {
+  useLayoutEffect,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import {
   View,
   ScrollView,
@@ -6,6 +11,7 @@ import {
   TextInput,
   StyleSheet,
   Platform,
+  LogBox,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector } from 'react-redux';
@@ -14,6 +20,9 @@ import HeaderButton from '../../components/UI/HeaderButton';
 
 // edit products saved from that user
 const EditProducts = ({ navigation, route }) => {
+  LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+  ]);
   const { productId } = route.params;
 
   const editProduct = useSelector(state =>
@@ -29,7 +38,18 @@ const EditProducts = ({ navigation, route }) => {
     editProduct ? editProduct.description : '',
   );
 
+  // not recreated everytime component re-renders
+  const submitHandler = useCallback(() => {
+    console.log('Submitting');
+  }, []);
+
+  useEffect(() => {
+    navigation.setParams({ submit: submitHandler });
+  }, [navigation, submitHandler]);
+
   useLayoutEffect(() => {
+    const submitFn = route.params?.submit;
+    console.log(submitFn);
     navigation.setOptions({
       title: productId ? 'Edit Product' : 'Add Product',
       headerRight: () => (
@@ -39,7 +59,7 @@ const EditProducts = ({ navigation, route }) => {
             iconName={
               Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
             }
-            onPress={() => {}}
+            onPress={submitFn}
           />
         </HeaderButtons>
       ),
