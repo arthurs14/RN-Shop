@@ -49,7 +49,6 @@ const EditProducts = ({ navigation, route }) => {
 
   useLayoutEffect(() => {
     const submitFn = route.params?.submit;
-    console.log(submitFn);
     navigation.setOptions({
       title: productId ? 'Edit Product' : 'Add Product',
       headerRight: () => (
