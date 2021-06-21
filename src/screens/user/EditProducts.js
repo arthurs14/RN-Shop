@@ -41,7 +41,8 @@ const EditProducts = ({ navigation, route }) => {
     editProduct ? editProduct.description : '',
   );
 
-  // not recreated everytime component re-renders
+  // not recreated everytime component re-renders unless values exist to
+  // re-render
   const submitHandler = useCallback(() => {
     if (editProduct) {
       // edit product
