@@ -14,9 +14,10 @@ import {
   LogBox,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import HeaderButton from '../../components/UI/HeaderButton';
+import * as productActions from '../../store/actions/productsActions';
 
 // edit products saved from that user
 const EditProducts = ({ navigation, route }) => {
@@ -24,6 +25,8 @@ const EditProducts = ({ navigation, route }) => {
     'Non-serializable values were found in the navigation state',
   ]);
   const { productId } = route.params;
+
+  const dispatch = useDispatch();
 
   const editProduct = useSelector(state =>
     state.products.userProducts.find(product => productId === product.id),
@@ -40,8 +43,20 @@ const EditProducts = ({ navigation, route }) => {
 
   // not recreated everytime component re-renders
   const submitHandler = useCallback(() => {
-    console.log('Submitting');
-  }, []);
+    if (editProduct) {
+      // edit product
+      dispatch(
+        productActions.updateProduct(productId, title, description, imageUrl),
+      );
+      console.log('Producted Edited Saved');
+    } else {
+      // add
+      dispatch(
+        productActions.createProduct(title, description, imageUrl, +price),
+      );
+      console.log('Product Created Saved');
+    }
+  }, [dispatch, editProduct, productId, title, description, imageUrl, price]);
 
   useEffect(() => {
     navigation.setParams({ submit: submitHandler });
