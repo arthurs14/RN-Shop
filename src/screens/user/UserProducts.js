@@ -13,13 +13,13 @@ const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   const dispatch = useDispatch();
 
-  const deleteProduct = () => {
+  const deleteProduct = id => {
     Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
       { text: 'No', style: 'default' },
       {
         text: 'Yes',
         style: 'destructive',
-        onPress: () => dispatch(productActions.deleteProduct(itemData.item.id)),
+        onPress: () => dispatch(productActions.deleteProduct(id)),
       },
     ]);
   };
@@ -72,7 +72,7 @@ const UserProducts = ({ navigation }) => {
           <Button
             color={Colors.primary}
             title="Delete"
-            onPress={deleteProduct}
+            onPress={() => deleteProduct(itemData.item.id)}
           />
         </ProductItem>
       )}
