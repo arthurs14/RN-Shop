@@ -52,7 +52,7 @@ const UserProducts = ({ navigation }) => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onSelect={() => {}}>
+          onSelect={() => editProduct(itemData.item.id)}>
           <Button
             color={Colors.primary}
             title="Edit"
