@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Platform,
   LogBox,
+  Alert,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,6 +34,8 @@ const EditProducts = ({ navigation, route }) => {
   );
 
   const [title, setTitle] = useState(editProduct ? editProduct.title : '');
+  const [titleIsValid, setTitleIsValid] = useState(false);
+
   const [imageUrl, setImageUrl] = useState(
     editProduct ? editProduct.imageUrl : '',
   );
@@ -44,6 +47,12 @@ const EditProducts = ({ navigation, route }) => {
   // not recreated everytime component re-renders unless values exist to
   // re-render
   const submitHandler = useCallback(() => {
+    if (!titleIsValid) {
+      Alert.alert('Wrong Input.', 'Please check the errors in the form.', [
+        { text: 'Okay' },
+      ]);
+      return;
+    }
     if (editProduct) {
       // edit product
       dispatch(
@@ -68,6 +77,7 @@ const EditProducts = ({ navigation, route }) => {
     imageUrl,
     price,
     navigation,
+    titleIsValid,
   ]);
 
   useEffect(() => {
@@ -92,6 +102,16 @@ const EditProducts = ({ navigation, route }) => {
     });
   });
 
+  const changeTitle = text => {
+    if (text.trim().length === 0) {
+      setTitleIsValid(false);
+    } else {
+      setTitleIsValid(true);
+    }
+
+    setTitle(text);
+  };
+
   return (
     <ScrollView>
       <View style={styles.form}>
@@ -100,7 +120,7 @@ const EditProducts = ({ navigation, route }) => {
           <TextInput
             style={styles.input}
             value={title}
-            onChangeText={text => setTitle(text)}
+            onChangeText={changeTitle}
             keyboardType="default"
             autoCapitalize="sentences"
             autoCorrect
@@ -108,6 +128,7 @@ const EditProducts = ({ navigation, route }) => {
             onEndEditing={() => console.log('onEndEditing')}
             onSubmitEditing={() => console.log('onSubmitEditing')}
           />
+          {!titleIsValid && <Text>Please Enter a Valid Title!</Text>}
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
