@@ -57,7 +57,18 @@ const EditProducts = ({ navigation, route }) => {
       );
       console.log('Product Created Saved');
     }
-  }, [dispatch, editProduct, productId, title, description, imageUrl, price]);
+
+    navigation.goBack();
+  }, [
+    dispatch,
+    editProduct,
+    productId,
+    title,
+    description,
+    imageUrl,
+    price,
+    navigation,
+  ]);
 
   useEffect(() => {
     navigation.setParams({ submit: submitHandler });
