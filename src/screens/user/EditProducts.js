@@ -101,6 +101,12 @@ const EditProducts = ({ navigation, route }) => {
             style={styles.input}
             value={title}
             onChangeText={text => setTitle(text)}
+            keyboardType="default"
+            autoCapitalize="sentences"
+            autoCorrect
+            returnKeyType="next"
+            onEndEditing={() => console.log('onEndEditing')}
+            onSubmitEditing={() => console.log('onSubmitEditing')}
           />
         </View>
         <View style={styles.formControl}>
@@ -118,6 +124,7 @@ const EditProducts = ({ navigation, route }) => {
               style={styles.input}
               value={price}
               onChangeText={total => setPrice(total)}
+              keyboardType="decimal-pad"
             />
           </View>
         )}
